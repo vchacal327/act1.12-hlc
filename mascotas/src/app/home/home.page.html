@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Lista de mascotas </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-input [(ngModel)]="filtro" placeholder="Introduce la raza de la mascota"></ion-input>
+  <ion-grid>
+    <ion-row>
+      <ng-container *ngFor="let pet of pets | async">
+        <ion-col *ngIf="filtro=='' || pet.breed.startsWith(filtro)" size-xl="2" size-lg="3" size-md="4" size-sm="6" size-xs="12">
+          <ion-card>
+            <ion-card-content>
+              <ion-avatar>
+                <img [src]="pet.imagen" />
+              </ion-avatar>
+              <p>{{ pet.breed }}</p>
+              <div class="divInfo">
+              <p>{{ pet.pet_name }}</p>
+              <p>{{ pet.age }}</p>
+            </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+</ion-content>
